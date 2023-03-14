@@ -1,0 +1,72 @@
+---
+title: "Population, Samples, and Estimates"
+output: html_notebook
+---
+
+First step of statistical inference is to find population you are interested in
+```{r}
+library(downloader)
+url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv"
+filename <- "mice_pheno.csv"
+download(url,destfile=filename)
+dat <- read.csv(filename)
+```
+
+access the population values to compute size of the control population. m is 225
+```{r}
+library(dplyr)
+controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>% 
+  select(Bodyweight) %>% unlist
+length(controlPopulation)
+```
+
+Compute the size of high fat diet population. n is 200
+```{r}
+hfPopulation <- filter(dat,Sex == "F" & Diet == "hf") %>%  
+  select(Bodyweight) %>% unlist
+length(hfPopulation)
+```
+define summaries of interest for these populations, such as the mean and variance using statistical inference with samples since we dont have access to the entire population
+
+Samples with capital letters
+
+
+
+```{r}
+library(downloader) 
+url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv"
+filename <- basename(url)
+download(url, destfile=filename)
+dat <- read.csv(filename) 
+```
+remove the lines that contain missing values:
+```{r}
+dat <- na.omit(dat)
+
+```
+1.Use dplyr to create a vector x with the body weight of all males on the control (chow) diet. What is this population’s average?
+
+I need to know the size of all males in control to create the appropriate vector size
+```{r}
+control_males <- dat %>% filter(Sex == "M", Diet == "hf") 
+length(control_males[])
+
+```
+```{r}
+n = 579
+x <-  vector("numeric",n)
+x <- dat
+mean(x[])
+```
+
+
+
+
+
+
+
+
+
+
+
+

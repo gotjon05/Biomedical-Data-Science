@@ -1,5 +1,6 @@
 #Random Variables Exercise
 library(downloader) 
+library(dplyr)
 url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleControlsPopulation.csv"
 filename <- basename(url)
 download(url, destfile=filename)
@@ -10,9 +11,9 @@ x %>% unlist %>% mean
 
 #Find mean absolute difference between sample of 5 and all the values
 set.seed(1)
-sample_sd1 <- x %>% sample(5) %>% mean
+avg_sample <- x %>% sample(5) %>% mean
 total <- x %>% mean 
-abs(sample_sd1 - total)
+abs(avg_sample - total)
 
 #change to set.seed(5) and find absolute difference 
 set.seed(5)
